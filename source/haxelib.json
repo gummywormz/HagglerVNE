@@ -2,10 +2,10 @@
   "name": "HagglerVNE",
   "url" : "https://github.com/gummywormz/HagglerVNE",
   "license": "BSD",
-	"tags": ["game", "openfl", "flash", "html5", "neko", "cpp", "android", "ios", "cross"],
+  "tags": ["game", "openfl", "flash", "html5", "neko", "cpp", "android", "ios", "cross"],
   "description": "Visual novel engine for HaxeFlixel.",
   "version": "1.0.0",
   "releasenote": "Initial release.",
-  "contributors": ["gummywormz"]
+  "contributors": ["gummywormz"],
   "dependencies": { "flixel": "" }
 }
