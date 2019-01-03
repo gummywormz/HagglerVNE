@@ -4,8 +4,8 @@
   "license": "BSD",
   "tags": ["game", "openfl", "flash", "html5", "neko", "cpp", "android", "ios", "cross"],
   "description": "Visual novel engine for HaxeFlixel.",
-  "version": "1.0.0",
-  "releasenote": "Initial release.",
+  "version": "1.0.1",
+  "releasenote": "Fixes custom events not compiling.",
   "contributors": ["gummywormz"],
   "dependencies": { "flixel": "" }
 }

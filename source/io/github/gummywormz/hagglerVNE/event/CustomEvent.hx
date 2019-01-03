@@ -24,7 +24,7 @@ public function new (when : Int, blocking : Bool, func : Void->Void)
 /**
  * Executes this event
  */
-public function exec()
+override public function exec()
 {
     _func();
 }
