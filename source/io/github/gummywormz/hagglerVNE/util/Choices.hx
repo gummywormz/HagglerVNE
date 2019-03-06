@@ -2,6 +2,7 @@ package io.github.gummywormz.hagglerVNE.util;
 import flixel.FlxState;
 
 import flixel.FlxG;
+import flixel.ui.FlxButton;
 
 using io.github.gummywormz.hagglerVNE.util.misc;
 
@@ -12,7 +13,7 @@ using io.github.gummywormz.hagglerVNE.util.misc;
 class Choices
 {
 	var _texts : List<String>;
-	var _btns : List<FlxButton2>;
+	var _btns : List<FlxButton>;
 	var _idOfPressed = -1;
 
 	/**
@@ -21,7 +22,7 @@ class Choices
 	public function new()
 	{
 		_texts = new List<String>();
-		_btns = new List<FlxButton2>();
+		_btns = new List<FlxButton>();
 	}
 
 	/**
@@ -44,7 +45,9 @@ class Choices
 
 		for (t in _texts)
 		{
-			var btn = new FlxButton2(FlxG.width / 2.0, counter, _texts.listGet(counter2), onClicked, counter2);
+			var btn = new FlxButton(FlxG.width / 2.0, counter, _texts.listGet(counter2));
+			btn.ID = counter2;
+			btn.onDown.callback = onClicked.bind(btn.ID);
 			_btns.add(btn);
 			s.add(btn);
 			counter2++;
