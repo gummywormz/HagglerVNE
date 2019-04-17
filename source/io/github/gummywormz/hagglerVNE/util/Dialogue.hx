@@ -1,12 +1,9 @@
 
 package io.github.gummywormz.hagglerVNE.util ;
 
-import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.text.FlxText;
-import flixel.ui.FlxButton;
-import flixel.util.FlxColor;
 
 import io.github.gummywormz.hagglerVNE.options.TextFormatOption;
 import io.github.gummywormz.hagglerVNE.options.GlobalOptions;
@@ -31,6 +28,7 @@ class Dialogue extends FlxSprite
 	var _showMug = true;
 	var _msg : String;
 	var _format : TextFormatOption;
+	//var _tFormat : List<FlxTextFormat>;
 
 	/**
 	 * @param X The x position of the dialogue
@@ -38,11 +36,12 @@ class Dialogue extends FlxSprite
 	 * @param w The width of the dialogue box
 	 * @param h The height of the dialogue box
 	 * @param bcolor The background of the dialogue box (use FlxColor)
-	 * @param tcolor The text color of the dialogue box (use FlxColor)
+	 * @param tcolor Deprecated, use TextFormatOption instead
 	 * @param mug The mug shot to use of the dialogue box (optional)
 	 * @param graphic The graphic to use instead of colors
+	 * @param format The TextFormatOption to use. Will override any global option. 
 	 */
-	public function new(X:Float=0, Y:Float=0, w:Int, h:Int, bcolor : Int, tcolor : Int, ?mug : FlxSprite, ?msg : String,?graphic : FlxSprite) 
+	public function new(X:Float=0, Y:Float=0, w:Int, h:Int, bcolor : Int, tcolor : Int, ?mug : FlxSprite, ?msg : String,?graphic : FlxSprite,?format:TextFormatOption) 
     {
         super(X, Y);
         _x = X;
@@ -56,6 +55,8 @@ class Dialogue extends FlxSprite
         _height = h;
         _msg = msg;
 		_graphic = graphic;
+		_format = format;
+		//_tFormat = tformat;
         //makeGraphic(w,h,bcolor);
     }
 
@@ -92,12 +93,15 @@ class Dialogue extends FlxSprite
 		if (_format != null)
 		{
 			_curText = applyFormat(_curText, _format);
+			//trace("applied given format");
 		}
 		else if (GlobalOptions.textFormat != null)
 		{
-			_curText = applyFormat(_curText,GlobalOptions.textFormat);
+			_curText = applyFormat(_curText, GlobalOptions.textFormat);
+			//trace("applied global format");
 		}
-		_curText.color = _textColor;
+		else{_curText.color = _textColor;}
+		
     	f.add(_curText);
     }
 	
