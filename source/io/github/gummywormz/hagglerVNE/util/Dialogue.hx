@@ -8,6 +8,8 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 
+import io.github.gummywormz.hagglerVNE.options.TextFormatOption;
+import io.github.gummywormz.hagglerVNE.options.GlobalOptions;
 
 /**
  * Character dialogue boxes
@@ -28,6 +30,7 @@ class Dialogue extends FlxSprite
 	var _curText : FlxText;
 	var _showMug = true;
 	var _msg : String;
+	var _format : TextFormatOption;
 
 	/**
 	 * @param X The x position of the dialogue
@@ -83,7 +86,18 @@ class Dialogue extends FlxSprite
     	}
     	else{t = text;}
 
-    	_curText = new FlxText(_x + 92,_y + 32,0.0,t,12);
+    	_curText = new FlxText(_x + 92, _y + 32, 0.0, t, 12);
+		
+	
+		if (_format != null)
+		{
+			_curText = applyFormat(_curText, _format);
+		}
+		else if (GlobalOptions.textFormat != null)
+		{
+			_curText = applyFormat(_curText,GlobalOptions.textFormat);
+		}
+		_curText.color = _textColor;
     	f.add(_curText);
     }
 	
@@ -150,6 +164,20 @@ class Dialogue extends FlxSprite
 	public function setGraphic(g : FlxSprite)
 	{
 		_graphic = g;
+	}
+	
+	/**
+	   Sets the TextFormat of the text to be displayed.
+	   @param	t TextFormatOption
+	**/
+	public function setTextFormat(t : TextFormatOption)
+	{
+		_format = t;
+	}
+	
+	function applyFormat(t : FlxText, o:TextFormatOption) : FlxText
+	{
+		return t.setFormat(o.get_font(),o.get_size(),o.get_textColor(),o.get_align(),o.get_borderStyle(),o.get_borderColor(),o.get_embedded());
 	}
 
 }
