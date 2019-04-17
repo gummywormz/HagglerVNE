@@ -4,8 +4,8 @@
   "license": "BSD",
   "tags": ["game", "openfl", "flash", "html5", "neko", "cpp", "android", "ios", "cross"],
   "description": "Visual novel engine for HaxeFlixel.",
-  "version": "1.0.1",
-  "releasenote": "Fixes custom events not compiling.",
+  "version": "1.1.0",
+  "releasenote": "Add the ability to format text in dialogue boxes either individually or globally. Made IDs for choices use bind instead of overriding FlxButton",
   "contributors": ["gummywormz"],
   "dependencies": { "flixel": "" }
 }
