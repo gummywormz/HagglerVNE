@@ -4,6 +4,7 @@ package io.github.gummywormz.hagglerVNE.util ;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.text.FlxText;
+import io.github.gummywormz.hagglerVNE.options.DialogueOption;
 
 import io.github.gummywormz.hagglerVNE.options.TextFormatOption;
 import io.github.gummywormz.hagglerVNE.options.GlobalOptions;
@@ -31,6 +32,7 @@ class Dialogue extends FlxSprite
 	//var _tFormat : List<FlxTextFormat>;
 
 	/**
+	 * Create a dialogue box manually using the specified options
 	 * @param X The x position of the dialogue
 	 * @param Y The Y position of the dialogue
 	 * @param w The width of the dialogue box
@@ -59,6 +61,28 @@ class Dialogue extends FlxSprite
 		//_tFormat = tformat;
         //makeGraphic(w,h,bcolor);
     }
+	
+	/**
+	   Creates a dialogue object using a dialogue option
+	   @param	d Dialogue option object to use
+	   @param	mug Mug shot
+	   @param	msg Message to be displayed in the dialogue box
+	   @return A dialogue object
+	**/
+	public static function fromDialogueOption(d : DialogueOption, ?mug : FlxSprite, ?msg:String)
+	{
+		return new Dialogue(d.x,d.y,d.width,d.height,d.bcolor,0,mug,msg,d.graphic,d.format);
+	}
+	
+	/**
+	   Create a dialogue object using the dialogue option specified in GlobalOptions.dialogueOption
+	   @param	mug Mug shot
+	   @param	msg Message to be displayed in the dialogue box
+	**/
+	public static function fromGDialogueOption(?mug : FlxSprite, ?msg : String)
+	{
+		return fromDialogueOption(GlobalOptions.dialogueOption,mug,msg);
+	}
 
 	/**
 	 * Shows this text
