@@ -203,6 +203,23 @@ class Dialogue extends FlxSprite
 		_format = t;
 	}
 	
+	/**
+	   Applies flxtextformats to this object. This differs from TextFormats as only parts of the
+	   dialogue is affected.
+	   NOTES: This method does not verify the sanity of the format / if the start and ending characters are valid
+	   @param	t An array of FlxTextFormatWrappers
+	   @return This dialogue object
+	**/
+	public function applyFlxTextFormats(t : Array<FlxTextFormatWrapper>)
+	{
+		for (f in t)
+		{
+			_curText.addFormat(f.format,f.startChar,f.endChar);
+		}
+		
+		return this;
+	}
+	
 	function applyFormat(t : FlxText, o:TextFormatOption) : FlxText
 	{
 		return t.setFormat(o.get_font(),o.get_size(),o.get_textColor(),o.get_align(),o.get_borderStyle(),o.get_borderColor(),o.get_embedded());
