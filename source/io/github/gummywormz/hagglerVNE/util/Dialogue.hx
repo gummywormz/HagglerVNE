@@ -29,7 +29,7 @@ class Dialogue extends FlxSprite
 	var _showMug = true;
 	var _msg : String;
 	var _format : TextFormatOption;
-	//var _tFormat : List<FlxTextFormat>;
+	var _tFormat : Array<FlxTextFormatWrapper>;
 
 	/**
 	 * Create a dialogue box manually using the specified options
@@ -58,7 +58,7 @@ class Dialogue extends FlxSprite
         _msg = msg;
 		_graphic = graphic;
 		_format = format;
-		//_tFormat = tformat;
+		_tFormat = new Array<FlxTextFormatWrapper>();
         //makeGraphic(w,h,bcolor);
     }
 	
@@ -124,7 +124,15 @@ class Dialogue extends FlxSprite
 			_curText = applyFormat(_curText, GlobalOptions.textFormat);
 			//trace("applied global format");
 		}
-		else{_curText.color = _textColor;}
+		else{_curText.color = _textColor; }
+	
+		if (_tFormat != null) 
+			{
+				for (f in _tFormat)
+				{
+					_curText.addFormat(f.format,f.startChar,f.endChar);
+				}
+			}
 		
     	f.add(_curText);
     }
@@ -207,17 +215,13 @@ class Dialogue extends FlxSprite
 	   Applies flxtextformats to this object. This differs from TextFormats as only parts of the
 	   dialogue is affected.
 	   NOTES: This method does not verify the sanity of the format / if the start and ending characters are valid
+	   This method can only handle a single array at a time. Calling this function more than once causes only the most
+	   recent array of textformats to apply.
 	   @param	t An array of FlxTextFormatWrappers
-	   @return This dialogue object
 	**/
 	public function applyFlxTextFormats(t : Array<FlxTextFormatWrapper>)
 	{
-		for (f in t)
-		{
-			_curText.addFormat(f.format,f.startChar,f.endChar);
-		}
-		
-		return this;
+		_tFormat = t;
 	}
 	
 	function applyFormat(t : FlxText, o:TextFormatOption) : FlxText
