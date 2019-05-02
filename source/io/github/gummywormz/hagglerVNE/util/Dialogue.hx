@@ -225,6 +225,23 @@ class Dialogue extends FlxSprite
 		return this;
 	}
 	
+	/**
+	   Applies a single textformat to this dialogue. This differs from TextFormats as only parts of the
+	   dialogue are affected.
+	   NOTES: This method does not verify the sanity of the format / if the start and ending characters are valid
+	   This method can only handle a single entry at a time. Calling this function more than once causes only the most
+	   recent entry to apply.
+	   To add multiple textformats, please use applyFlxTextFormats.
+	   @param	t
+	**/
+	public function applyFlxTextFormat(t: FlxTextFormatWrapper)
+	{
+		var temp = new Array<FlxTextFormatWrapper>();
+		temp[0] = t;
+		_tFormat = temp;
+		return this;
+	}
+	
 	function applyFormat(t : FlxText, o:TextFormatOption) : FlxText
 	{
 		return t.setFormat(o.get_font(),o.get_size(),o.get_textColor(),o.get_align(),o.get_borderStyle(),o.get_borderColor(),o.get_embedded());
