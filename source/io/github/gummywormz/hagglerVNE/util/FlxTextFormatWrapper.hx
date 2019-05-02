@@ -18,4 +18,12 @@ class FlxTextFormatWrapper
 	   The format itself
 	**/
 	public var format : FlxTextFormat;
+	
+	public function new(_startChar : Int, _endChar:Int,_format:FlxTextFormat)
+	{
+		startChar = _startChar;
+		endChar = _endChar;
+		format = _format;
+		
+	}
 }

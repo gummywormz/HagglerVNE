@@ -213,7 +213,7 @@ class Dialogue extends FlxSprite
 	
 	/**
 	   Applies flxtextformats to this object. This differs from TextFormats as only parts of the
-	   dialogue is affected.
+	   dialogue are affected.
 	   NOTES: This method does not verify the sanity of the format / if the start and ending characters are valid
 	   This method can only handle a single array at a time. Calling this function more than once causes only the most
 	   recent array of textformats to apply.
@@ -222,6 +222,7 @@ class Dialogue extends FlxSprite
 	public function applyFlxTextFormats(t : Array<FlxTextFormatWrapper>)
 	{
 		_tFormat = t;
+		return this;
 	}
 	
 	function applyFormat(t : FlxText, o:TextFormatOption) : FlxText
